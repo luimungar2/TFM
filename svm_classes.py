@@ -9,7 +9,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, cohen_kappa_score, mean_absolute_error, mean_squared_error, roc_curve, auc
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 import numpy as np
@@ -152,8 +151,8 @@ class MalwareClassifier:
         self.y_train_encoded = label_encoder.fit_transform(self.y_train)
         self.y_test_encoded = label_encoder.transform(self.y_test)
 
-        # Crear un clasificador RandomForestClassifier con probability=True
-        self.clf = RandomForestClassifier()
+        # Crear un clasificador SVC con probability=True
+        self.clf = SVC(probability=True)
 
         # Entrenar el clasificador con tus datos de entrenamiento
         self.clf.fit(self.X_train, self.y_train_encoded)
